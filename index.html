@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoàng Đạt Restaurant</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#f2f2f2;
+}
+
+h1{
+    background:#ff4d4d;
+    color:white;
+    padding:20px;
+}
+
+.item{
+    display:inline-block;
+    width:250px;
+    margin:10px;
+    padding:10px;
+    background:white;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+.item img{
+    width:200px;
+    height:150px;
+    object-fit:cover;
+}
+
+button{
+    background:#ff4d4d;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#cc0000;
+}
+
+#checkout{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<h1>🍽️ Hoàng Đạt Restaurant 🍽️</h1>
+
+<h3>
+🛒 Số món đã mua:
+<span id="count">0</span>
+</h3>
+
+<h3>
+💰 Tổng tiền:
+<span id="total">0</span> VNĐ
+</h3>
+
+<div id="menu"></div>
+
+<div id="checkout">
+
+<h2>Thanh Toán</h2>
+
+<p>Ngân hàng: MB Bank</p>
+<p>Số tài khoản: 123456789</p>
+
+<button onclick="checkout()">
+Thanh Toán
+</button>
+
+</div>
+
+<script>
+
+const foods = [
+
+{
+name:"Pizza",
+price:100000,
+image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+},
+
+{
+name:"Hamburger",
+price:80000,
+image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500"
+},
+
+{
+name:"Phở Bò",
+price:50000,
+image:"https://images.unsplash.com/photo-1547592180-85f173990554?w=500"
+},
+
+{
+name:"Gà Rán",
+price:60000,
+image:"https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500"
+},
+
+{
+name:"Bánh Mì",
+price:25000,
+image:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+},
+
+{
+name:"Cơm Tấm",
+price:40000,
+image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500"
+},
+
+{
+name:"Mì Xào",
+price:35000,
+image:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500"
+},
+
+{
+name:"Sushi",
+price:120000,
+image:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=500"
+},
+
+{
+name:"Hot Dog",
+price:30000,
+image:"https://images.unsplash.com/photo-1612392062798-2d9334eb3d8b?w=500"
+},
+
+{
+name:"Khoai Tây Chiên",
+price:25000,
+image:"https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500"
+},
+
+{
+name:"Trà Sữa",
+price:30000,
+image:"https://images.unsplash.com/photo-1525385133512-2f3bdd039054?w=500"
+},
+
+{
+name:"Nước Cam",
+price:20000,
+image:"https://images.unsplash.com/photo-1613478223719-2ab802602423?w=500"
+},
+
+{
+name:"Kem Socola",
+price:35000,
+image:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500"
+},
+
+{
+name:"Bánh Flan",
+price:20000,
+image:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500"
+}
+
+];
+
+let count = 0;
+let total = 0;
+
+const menu = document.getElementById("menu");
+
+foods.forEach(food => {
+
+menu.innerHTML += `
+<div class="item">
+<img src="${food.image}" alt="${food.name}">
+
+<h3>${food.name}</h3>
+
+<p>${food.price.toLocaleString()} VNĐ</p>
+
+<button onclick="buy(${food.price})">
+Mua
+</button>
+
+</div>
+`;
+
+});
+
+function buy(price){
+
+count++;
+total += price;
+
+document.getElementById("count").innerText = count;
+document.getElementById("total").innerText =
+total.toLocaleString();
+
+}
+
+function checkout(){
+
+if(total === 0){
+
+alert("Vui lòng chọn món ăn!");
+
+return;
+
+}
+
+alert(
+"Thanh toán thành công!\nTổng tiền: "
++ total.toLocaleString() +
+" VNĐ"
+);
+
+}
+
+</script>
+
+</body>
+</html>
